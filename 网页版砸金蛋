@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>砸蛋蛋</title>
+		<style>
+			body{
+				background:#000;
+			}
+			td{
+				width:200px;
+				height:151px;
+				background:url(jindan.gif);
+			}
+			.x1{
+				background:url(kongdan.gif);
+			}
+			.x2{
+				background:url('jinhua.gif');
+			}
+			#x1{
+				background:url(kongdan.gif);
+			}
+			#x2{
+				background:url(jinhua.gif);
+			}
+		</style>
+
+    <script>
+         s=0;
+         list=['x1','x2','x1','x2','x1','x1','x1','x1','x1','x1','x1','x1','x1','x1','x1','x1'];
+			bool=[false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false];
+			   function ab(_this,key){
+
+				/*s+=1;*/
+				k=Math.floor(Math.random()*list.length);
+				/*if (s==1){*/
+				/*if (!bool[key]){*/
+					_this.className=list[k];
+					list.splice(k,1);
+				/*}*/
+				/*}else{
+					s=3;
+				}*/
+				bool[key]=true;
+			}
+    </script>
+
+	</head>
+	<body>
+		<table align="center">
+			<tr>
+			  <td onclick="ab(this,5)">
+				</td>
+        <td onclick="ab(this,5)">
+				</td>
+        <td onclick="ab(this,5)">
+				</td>
+        <td onclick="ab(this,5)">
+				</td>
+			</tr>
+
+			<tr>
+			  <td onclick="ab(this,5)">
+				</td>
+        <td onclick="ab(this,5)">
+				</td>
+        <td onclick="ab(this,5)">
+				</td>
+        <td onclick="ab(this,5)">
+				</td>
+			</tr>
+
+      <tr>
+			  <td onclick="ab(this,5)">
+				</td>
+        <td onclick="ab(this,5)">
+				</td>
+        <td onclick="ab(this,5)">
+				</td>
+        <td onclick="ab(this,5)">
+				</td>
+			</tr>
+
+      <tr>
+			  <td onclick="ab(this,5)">
+				</td>
+        <td onclick="ab(this,5)">
+				</td>
+        <td onclick="ab(this,5)">
+				</td>
+        <td onclick="ab(this,5)">
+				</td>
+			</tr>
+
+		</table>
+	</body>
+</html>
