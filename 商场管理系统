@@ -1,4 +1,4 @@
-商场管理系统
+
 import pymysql
 from redis import Redis
 
