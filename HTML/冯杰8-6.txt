@@ -1,0 +1,229 @@
+Last login: Mon Aug  6 08:45:45 on console
+zelindeMacBook-Pro-4:~ zelin$ cd /Users/zelin/Desktop
+zelindeMacBook-Pro-4:Desktop zelin$ touch jack_8-6
+zelindeMacBook-Pro-4:Desktop zelin$ vim jack_8-6
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+html
+form表单：
+action 指定跳转的页面(action 的method的get方法极不安全，因为提交的表单明文发送，
+不加密，地址栏有信息，大小限制2M，有大小限制的不适合上传图片视频。用post相对安全
+post提交方式，非明文发送，信息在文件体里面，信息是加密的，没有大小限制
+文本框：text  密码框“不能看到密码用password
+单点：radio
+多选：checkbox  check=‘check’ 默认选中
+提交给表单：submit
+<input type....有name 用get方法，上传时信息在地址栏可视）
+<input type="submit or reset " vaules=""/>
+<select>下拉列表 三级联动（选一个选项时同时列出所属该选项的所有选项）
+  <option>深圳</option>
+  <option>东莞</option>
+  <option>广州</option>
+</selec>
+<testarea cols=可视为多少行，rows=>
+</textarea>
+列表：
+有标记列表： 取消前面的小圆点（<ul style="list-style-type: none”>）
+   无序列表 ul li
+   有序列表  ol li
+无标记列表：dl dt dd
+           dl 主标题
+           dl dt 无缩进
+           dd 有缩进
+布局常用ul，dl dt  建议少用
+框架：
+   frameset框架集
+   与fame合用，解决局部刷新问题<F6><F6>123456
+
+
+
+
+以上是h4经常出现的
+下面h5添加的
+<input type=url(必须输入http开头的网址）,email（识别@，@只能在中间）,
+file(上传文件），range（滑动块），color（选择颜色），
+
+
+
+css:
+
+w3c标准3要素：结构（HTML）  表现（css)  行为（js)
+            html作用：告诉网页放哪里，哪里放文字
+           css作用：美化网页，文字大小，文字颜色
+            js作用：动效
+css:层叠样式表   style主要接收CSS样式
+在head里面加style （font-family:后面要加引号）
+<style>
+      p{
+        font-family:'宋体';
+       font-size:30px;
+       color:purple;
+        font-style:italic倾斜
+        font-weight:bold 加粗
+        text-decoration:underline下划线（none）取消下划线
+        text-align:center字体水平居中、
+       background：url(图片路径）
+        
+      }
+
+然后在body中加<p></p>标签 
+
+1.  p{font-family:'宋体'}标签选择器：把HTML里面标签拿出来，定义CSS样式
+2.   .p{font-family:‘宋体'}类别选择器：把HTML里面的标签加上一个类别class，用.来定义CSS的样式
+     
+    <p.center>
+        {
+          text-aligns:center;
+        }
+   <p class="center">这个段落居中对齐。</p> 
+
+
+3.  #p{font.family:'宋体'} id选择器，把HTML里面的标签来定义一个id,在CSS声明中用#来定义  
+
+3个选择器同时使用，出现同样的CSS语句，取决id选择器  
+全局选择器：*{}所有的选择器都是语句中定义的属性
+id>class>标签>全局
+
+
+伪类选择器：（用来添加以下选择器的特殊效果）
+        
+        a:link 鼠标未点击的状态
+        a:visited  鼠标访问过后的状态
+        a:hover 鼠标进过时候的状态
+        a:active 鼠标点击时的状态
+顺序：
+a:hover 必须在a:link 和a:visited之后才是有效的
+a:active 必须在a:hover之后才是有效的
+伪类选择器不区分大小写
+
+关于字体的CSS相关属性：
+
+
+
+练习知识点：
+砸金蛋
+用CSS在style中插入各种状态的背景图片，分加
+点击事件： （name选择器要加name，id选择器不用加name  this.className,this.id）
+.x1{
+background:url(kongdan.gif);
+}
+<td onclick="this.className='x1'"></td>
+<td onclick=“this.className=‘x’+Math.floor(Math.random()*2+1)”>
+
+
+css盒子模型：
+          流行布局：div+css
+          把网页上所有的元素看成一个盒子
+          盒子有一个边距：外边距：本身的盒子距其他盒子的距离
+          内边距：本身盒子给自身的元素留出的距离
+          边框：盒子本身的边框线
+          内容：盒子里面的东西
+外边距（margin） 内边距（padding） 边框（border） 内容（content）  合称盒子模型四要素
+margin pading 参数4个 从上面开始 ，顺时针方向赋值，上右下左
+                  margin 10px 20px 30px 40px  上右下左
+                  margin 10px 20px 30px;   3个参数，上10px,左右20px,下30px;
+                  margin  10px 20px    上下10px  左右20px
+                分开写：上 top 下bottom 左left 右right
+                margin-top:20px
+ padding 参数和margin一样
+border：描述边框有3个属性：
+        border-style：  边框样式：实线（solid），双线（double），虚线（dashed），电线（dotted)
+        border-width: 边框粗细
+        border-color：边框颜色
+       1. border-radius：6px;设置圆角大小
+        如果圆角的大小是元素高度的一半，就是圆，正圆要宽高一致
+       2.三角形
+        border-color：（上右下左）
+        border-style:solid
+ 
+
+背景：
+    background:
+			分写:
+			background-color：背景颜色
+			background-image:背景图像
+			background-repeat:背景重复  no-repeat不重复  repeat-x 横向重复 repeat-y 纵向重复 repeat重复
+			background-position:指定背景所有位置，px，百分比也可以
+			background-position:50% 50%;背景图像居中
+			h5新增:background-size:背景尺寸: 对背景进行了拉伸
+		盒子div没有大小，必须指定width,height
+		
+			background:颜色 图像  重复不重复 背景图像的位置;
+			background:black url(jindan.gif) no-repeat 50% 50%;
+		前端优化其中一点：小图都放在一张大图上，减小http请求
+		div 块状元素：独占一行, h1-h6 p li dl dt dd
+		    行内元素:不能独立一行,跟其它元素和谐相处于一行,img a (span不换行p换行)\
+		如果想把块状元素放在一行，用一个技术：浮动 float:left向左浮动，right向右浮动
+  
+               
+
+
+
+
+js:
+
+<script>接收js弹出信息框alert
+         alert(1/0)出现结果“无穷大"  0.1+0.2>0.3  0.3-0.2<0.1
+			三元运算符（冒号运算符):3+4>7?1+2:3+4=7		条件?语句1:语句2
+			先看条件是否成立，成立就是冒号前面的语句1,不成立就是冒号后面的语句2	
+			js随机 Math.random()产生0-1之间的随机小数,可以等于0，永远不等于1
+			Math.floor()向下截取 Math.ceil()向上截取 Math.round()四舍五入
+			Math.floor(Math.random()*10)=产生0---9之间
+			产生1-9之间  Math.floor(Math.random()*9+1)
+			产生几到几的随机整数
+				   公式：  Math.floor(Math.random()*(大数-小数+1)+1)
+			js里面所有的基本数据类型都可以用+号连接，不用转换
+			把16个奖项放到数组里:	
+				['x1','x2','x1','x2','x1','x1','x1','x1','x1','x1','x1','x1','x1','x1','x1','x1']
+			数组长度length
+			数组删除 splice(脚标，几个) splice(i,1)第i个位置删除1个
+			函数用function定义,函数可以传参，编程传参通常情况下传下标或者当前点击的对象
+于1
+     
+
+<script>
+s=0
+</script>
+<td onclick=“s+=1;s==1?this.className=‘x’+Math.floor(Math.random()*2+1):s=3”>
+</td>
+<td onclick=“s+=1;k=Math.floor(Math.random()*list.length);s==1?this.className=list[k]
+:s=3;list.splice(k,1)’>
+<td>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+-- INSERT --
