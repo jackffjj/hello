@@ -1,0 +1,248 @@
+商场管理系统
+import pymysql
+from redis import Redis
+
+class shop:
+	def login(self):
+		r = Redis(host='localhost', port=6379)
+		user = r.get('user')
+		if user == None:
+			name = input('请输入姓名')
+			pwd = input('请输入密码')
+			conn = pymysql.connect(host='localhost', port=3306, user='root', password='123456', db='test2',
+								   charset='utf8')
+			cur = conn.cursor()
+			# sql='select * from user where username="%s" and password="%s"',(name,pwd)
+			# print(sql)
+			result = cur.execute('select * from user where username=%s and password=%s', (name, pwd))
+			#	result=cur.execute('update user set password=%s where username=%s',(name,pwd))
+
+			if result == 1:
+				#	conn.commit()
+				r = Redis(host='localhost', port=6379)
+				r.set('user', name);
+				print('登录成功')
+			else:
+
+				print('登录失败')
+		else:
+
+			print("你已经登录，用户名为%s" % user)
+
+
+	def add(self):
+		conn = pymysql.connect(host='localhost', port=3306, user='root', password='123456', db='test2', charset='utf8')
+		cur = conn.cursor()
+		# cur.execute('select * from student')
+		result = cur.execute('insert into shop values(%d,"%s",%d)'%(sno,sname,sprice))
+		print(result)
+		conn.commit()
+
+	def delete(self):
+		conn = pymysql.connect(host='localhost', port=3306, user='root', password='123456', db='test2', charset='utf8')
+
+		cur = conn.cursor()
+		# cur.execute('select * from student')
+		result = cur.execute('delete from shop where sname="%s"' %a)
+		print(result)
+		conn.commit()
+
+	def update(self):         #类方法中的改操作是单个地改，这里是整行一起改的
+
+		conn = pymysql.connect(host='localhost', port=3306, user='root', password='123456', db='test2', charset='utf8')
+		cur = conn.cursor()
+		result = cur.execute('update shop set sno=%d,sname="%s",price=%d where sname="%s";' % (allid,allname,allname,usp))
+		print(result)
+		conn.commit()
+
+	@classmethod
+	def uid(cls):
+		conn = pymysql.connect(host='localhost', port=3306, user='root', password='123456', db='test2', charset='utf8')
+		cur = conn.cursor()
+		result = cur.execute('update shop set sno=%d where sname="%s"' %(idafer,usp))
+		print(result)
+		conn.commit()
+
+	@classmethod
+	def uname(cls):
+		conn = pymysql.connect(host='localhost', port=3306, user='root', password='123456', db='test2', charset='utf8')
+		cur = conn.cursor()
+		result = cur.execute('update shop set sname="%s" where sname="%s"' % (nameafer, usp))
+		print(result)
+		conn.commit()
+
+	@classmethod
+	def uprice(cls):
+		conn = pymysql.connect(host='localhost', port=3306, user='root', password='123456', db='test2', charset='utf8')
+		cur = conn.cursor()
+		result = cur.execute('update shop set price=%d where sname="%s"' % (priceafer, usp))
+		print(result)
+		conn.commit()
+
+
+	def select(self):     #类方法中的查操作是查询某一个，这里是整行一起查
+		conn = pymysql.connect(host='localhost', port=3306, user='root', password='123456', db='test2', charset='utf8')
+
+		cur = conn.cursor()
+		cur.execute('select * from shop')
+		result = cur.fetchall()
+		for re in result:
+			print(re)
+		print(re[1])
+		print(re[2])
+
+	@classmethod
+	def selectname(cls):
+		conn = pymysql.connect(host='localhost', port=3306, user='root', password='123456', db='test2', charset='utf8')
+
+		cur = conn.cursor()
+		cur.execute('select sname from shop')
+		result = cur.fetchall()
+		for re in result:
+			print(re)
+
+	@classmethod
+	def selectid(cls):
+		conn = pymysql.connect(host='localhost', port=3306, user='root', password='123456', db='test2', charset='utf8')
+
+		cur = conn.cursor()
+		cur.execute('select sno from shop')
+		result = cur.fetchall()
+		for re in result:
+			print(re)
+
+
+
+if __name__ == '__main__':
+
+	print('欢迎来到超市管理系统！请登录')
+	jack = shop()
+	jack.login()
+
+	print('welcome to my online supermaket!!!')
+	print("|||||||||||||||||||||||||||||||||||||||||||||||||||||")
+	print('选择1为添加商品，选择2为删除商品，选择3为修改商品，选择4为显示商品，5为购买商品')
+	print('请选择你要的操作，如：输入1')
+
+	while True:
+		sele = int(input('please input the number there:'))
+
+		if sele == 1:
+			print('以下是添加商品的操作：')
+			sno = int(input('请输入你要添加的商品编号：'))
+			sname = input('请输入您要添加的商品：')
+			sprice = int(input('请输入该商品价格：'))
+			jack.add()
+		elif sele == 2:
+			print('以下是删除商品的操作：')
+			shop.selectname()
+			a = input('请输入你要删除的商品：')
+			jack.delete()
+			print('删除成功！')
+		elif sele == 3:
+			shop.selectname()
+			usp = input('请输入您要更改的商品名字：')
+			print('ok,该商品可改项目有商品id,商品名字，还有价格')
+			print('更改id可以输入"id",更改商品名字可以输入"name",更改价格可以输入"price",都要改的话可以输入"all"')
+			u = input('请问您要更改该商品的什么项目呢：')
+			if u == 'id':
+				shop.selectid()
+				idafer = int(input('那么您想改成什么id呢？除了以上所列出来的已有id:'))
+				shop.uid()
+				print('更改完成！')
+
+			elif u == 'name':
+				shop.selectname()
+				nameafer = input('那么您想改成什么名字呢？除了以上所列出来的已有名字:')
+				shop.uname()
+				print('更改完成！')
+
+			elif u == 'price':
+				jack.select()
+				priceafer = int(input('那么您想改成什么价格呢？注意！以上商品的价格仅供参考:'))
+				shop.uprice()
+				print('更改完成！')
+
+			elif u == 'all':
+				jack.select()
+				allid = int(input('请输入要更改的id：'))
+				allname = input('请输入要更改的名字：')
+				allprice = int(input('请输入要更改的价格：'))
+				print(type(allname))
+				print(type(allid))
+				print(type(allprice))
+				jack.update()
+				print('更改完成！')
+
+		elif sele == 4:
+			print('温馨提示：')
+			print('请问您需要查看什么内容呢？如是商品号请输入id,如果是商品名字请输入name,如果是价格请输入price，查看订单可以输入order，如果想查看全部的商品请输入all')
+			s = input('please input:')
+			if s == 'id':
+				shop.selectid()
+
+				print('bey！')
+
+			elif s == 'name':
+				shop.selectname()
+
+				print('bey！')
+
+			elif s == 'price':
+				jack.select()
+
+				print('bey！')
+
+			elif s == 'all':
+				jack.select()
+
+				print('bey！')
+
+			elif s=='order':
+				print('以下是订单所有商品：')
+				conn = pymysql.connect(host='localhost', port=3306, user='root', password='123456', db='test2',charset='utf8')
+				cur = conn.cursor()
+				cur.execute('select * from dingdan')
+				result = cur.fetchall()
+				for re in result:
+					print(re)
+
+
+		elif sele==5:
+
+			e = int(input("请输入您的钱包金额:"))
+			while True:
+				conn = pymysql.connect(host='localhost', port=3306, user='root', password='123456', db='test2',
+									   charset='utf8')
+
+				cur = conn.cursor()
+				cur.execute('select * from shop')
+				goods_list = cur.fetchall()
+				print(goods_list)
+				for i, p in enumerate(goods_list):
+					print(i + 1, p[0], p[1],p[2])
+				enther = input("请输入要购买的商品序号:").strip()
+				if enther.isdigit():
+					enther = int(enther) - 1
+					pric = goods_list[enther][2]
+					print(pric)
+					if pric <= e:
+						result = cur.execute('insert into dingdan values(%d,%d,"%s",%d)' % (enther, goods_list[enther][0],goods_list[enther][1],goods_list[enther][2]))
+						print(result)
+						conn.commit()
+						e -= pric
+						print("您购买的%s已添加到购物车，剩余金额%s" % (goods_list[enther][1], e))
+					else:
+						print("金额不足，请重新选择，剩余金额%s" % e)
+				elif enther == 'quit':
+					print("购买的商品列表")
+					cur.execute('select * from shop')
+					goods_list = cur.fetchall()
+					for i, p in enumerate(goods_list):
+						print(i + 1, p[0], p[1], p[2])
+					print("剩余金额为%s" % e)
+					print("-----欢迎再次光临------")
+					break
+
+		else:
+			print('找不到组织啦，尴尬了吧！重新输入吧')
