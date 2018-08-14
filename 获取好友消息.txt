@@ -1,23 +1,20 @@
 #coding=utf-8
-#author:Î¢ĞÅ¹«ÖÚºÅ£º´óÊı¾İÇ°ÑØ
-#²é¿´´úÂë½²½â£¬ÊÓÆµ½Ì³Ì£¬ÇëÎ¢ĞÅÌí¼ÓºÃÓÑËÑË÷¹«ÖÚºÅ[´óÊı¾İÇ°ÑØ]²é¿´ÀúÊ·ÏûÏ¢»ñÈ¡¡£
-
 import itchat
 import json
 import requests
 import codecs
 
 sex_dict = {}
-sex_dict['0'] = "ÆäËû"
-sex_dict['1'] = "ÄĞ"
-sex_dict['2'] = "Å®"
+sex_dict['0'] = "å…¶ä»–"
+sex_dict['1'] = "ç”·"
+sex_dict['2'] = "å¥³"
 
 message_dict = {
-    "¶şÅÖ":"¸ü¶àºÃÍæµÄÄÚÈİÇë¹Ø×¢¹«ÖÚºÅ£º´óÊı¾İÇ°ÑØ£¨id:bigdataqianyan£©",
-    "ÄãºÃ":"ÄãºÃ°¡£¬ÕâÌõÏûÏ¢ÊÇ×Ô¶¯»Ø¸´µÄ¡£",
-    "±¸ÍüÂ¼":"ÔçÉÏ10.30²Î¼Ó²úÆ··¢²¼»á\n½ñÍí¸ô±ÚÍõ×ÜÕÒÄã¿ª»á"
+    "hi ,jack",
+    "ä½ å¥½":"ä½ å¥½å•Šï¼Œè¿™æ¡æ¶ˆæ¯æ˜¯è‡ªåŠ¨å›å¤çš„ã€‚",
+    "å¤‡å¿˜å½•":"æ—©ä¸Š10.30å‚åŠ äº§å“å‘å¸ƒä¼š\nä»Šæ™šéš”å£ç‹æ€»æ‰¾ä½ å¼€ä¼š"
 }
-#ÏÂÔØºÃÓÑÍ·Ïñ
+#ä¸‹è½½å¥½å‹å¤´åƒ
 def download_images(frined_list):
     image_dir = "D:/images/"
     num = 1
@@ -42,13 +39,13 @@ def print_content(msg):
     if text in message_dict.keys():
         user.send(message_dict[text])
     else:
-        user.send(u"ÄãºÃ°¡%s,ÎÒÄ¿Ç°»¹²»Ö§³ÖÕâ¸ö¹¦ÄÜ"%NickName)
+        user.send(u"ä½ å¥½å•Š%s,æˆ‘ç›®å‰è¿˜ä¸æ”¯æŒè¿™ä¸ªåŠŸèƒ½"%NickName)
 
 
 if __name__ == '__main__':
     itchat.auto_login()
     
-    friends = itchat.get_friends(update=True)[0:]#»ñÈ¡ºÃÓÑĞÅÏ¢
+    friends = itchat.get_friends(update=True)[0:]#è·å–å¥½å‹ä¿¡æ¯
     friends_list = []
 
     for friend in friends:
@@ -68,5 +65,5 @@ if __name__ == '__main__':
 
     
     user = itchat.search_friends(name=u'Jack')[0]
-    user.send(u'hello,ÕâÊÇÒ»ÌõÀ´×Ô»úÆ÷ÈËµÄÏûÏ¢')
+    user.send(u'hello,è¿™æ˜¯ä¸€æ¡æ¥è‡ªæœºå™¨äººçš„æ¶ˆæ¯')
     itchat.run()
