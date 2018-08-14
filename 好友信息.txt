@@ -6,8 +6,7 @@ Created on Wed Jun  6 22:26:37 2018
 """
 
 #coding=utf-8
-#author:Î¢ĞÅ¹«ÖÚºÅ£º´óÊı¾İÇ°ÑØ
-#²é¿´´úÂë½²½â£¬ÊÓÆµ½Ì³Ì£¬ÇëÎ¢ĞÅÌí¼ÓºÃÓÑËÑË÷¹«ÖÚºÅ[´óÊı¾İÇ°ÑØ]²é¿´ÀúÊ·ÏûÏ¢»ñÈ¡¡£
+
 import json
 from pyecharts import Bar
 from pyecharts import Grid
@@ -24,7 +23,7 @@ import codecs
 
 def get_pie(item_name,item_name_list,item_num_list):
     totle = item_num_list[0]+item_num_list[1]+item_num_list[2]
-    subtitle = "¹²ÓĞ:%d¸öºÃÓÑ"%totle
+    subtitle = "å…±æœ‰:%dä¸ªå¥½å‹"%totle
 
     pie = Pie(item_name,page_title = item_name,title_text_size=30,title_pos='center',\
         subtitle = subtitle,subtitle_text_size = 25,width=800,height= 800)
@@ -37,7 +36,7 @@ def get_pie(item_name,item_name_list,item_num_list):
     pie.render(out_file_name)
 
 def get_bar(item_name,item_name_list,item_num_list):
-    subtitle = "Î¢ĞÅ¹«ÖÚºÅ£º´óÊı¾İÇ°ÑØ"
+    subtitle = "hello i am jack"
     bar = Bar(item_name,page_title = item_name,title_text_size=30,title_pos='center',\
         subtitle = subtitle,subtitle_text_size = 25)
     
@@ -52,7 +51,7 @@ def get_bar(item_name,item_name_list,item_num_list):
 
 
 def get_map(item_name,item_name_list,item_num_list):
-    subtitle = "Î¢ĞÅ¹«ÖÚºÅ£º´óÊı¾İÇ°ÑØ"
+    subtitle = "hello i am jack"
     _map = Map(item_name,width=1300,height= 800,title_pos='center',title_text_size=30,\
         subtitle = subtitle,subtitle_text_size = 25)
     _map.add("", item_name_list, item_num_list, maptype='china', is_visualmap=True, visual_text_color='#000')
@@ -108,23 +107,23 @@ def counter2list(_counter):
     return name_list,num_list
 
 def get_tag(text,cnt):
-    print ('ÕıÔÚ·ÖÎö¾ä×Ó:',text)
+    print ('æ­£åœ¨åˆ†æå¥å­:',text)
     tag_list = jieba.analyse.extract_tags(text)
     for tag in tag_list:
         cnt[tag] += 1
 
 def mergeImage():
-    print("ÕıÔÚºÏ³ÉÍ·Ïñ")
-    #¶ÔÓÃ»§Í·Ïñ½øĞĞÑ¹Ëõ
+    print("æ­£åœ¨åˆæˆå¤´åƒ")
+    #å¯¹ç”¨æˆ·å¤´åƒè¿›è¡Œå‹ç¼©
     photo_width = 200
     photo_height = 200
 
-    #Í¼ÏñÂ·¾¶list
+    #å›¾åƒè·¯å¾„list
     photo_path_list = []
 
-    #»ñÈ¡µ±Ç°Â·¾¶
+    #è·å–å½“å‰è·¯å¾„
    
-    #±éÀúÎÄ¼ş¼Ğ»ñÈ¡ËùÓĞÍ¼Æ¬µÄÂ·¾¶
+    #éå†æ–‡ä»¶å¤¹è·å–æ‰€æœ‰å›¾ç‰‡çš„è·¯å¾„
     for root, dirs, files in os.walk('D:/images'):
             for file in files:
                 if "jpg" in file:
@@ -132,7 +131,7 @@ def mergeImage():
 
     #print(photo_path_list)
     pic_num = len(photo_path_list)
-    #Ã¿ĞĞÃ¿ÁĞÏÔÊ¾Í¼Æ¬ÊıÁ¿
+    #æ¯è¡Œæ¯åˆ—æ˜¾ç¤ºå›¾ç‰‡æ•°é‡
     line_max = int(math.sqrt(pic_num))
     row_max = int(math.sqrt(pic_num))
 
@@ -177,42 +176,42 @@ if __name__ == '__main__':
         friends = json.load(f)
     
 
-    #´ıÍ³¼Æ²ÎÊı
-    sex_counter =  Counter()#ĞÔ±ğ
-    Province_counter = Counter()#Ê¡·İ
-    NickName_list = [] #êÇ³Æ
-    Signature_counter = Counter()#¸öĞÔÇ©Ãû¹Ø¼ü´Ê
+    #å¾…ç»Ÿè®¡å‚æ•°
+    sex_counter =  Counter()#æ€§åˆ«
+    Province_counter = Counter()#çœä»½
+    NickName_list = [] #æ˜µç§°
+    Signature_counter = Counter()#ä¸ªæ€§ç­¾åå…³é”®è¯
 
     for friend in friends:
-        #Í³¼ÆĞÔ±ğ
+        #ç»Ÿè®¡æ€§åˆ«
         sex_counter[friend['Sex']]+=1
-        #Ê¡·İ
+        #çœä»½
         if friend['Province'] != "":
             Province_counter[friend['Province']]+=1
-        #êÇ³Æ
+        #æ˜µç§°
         NickName_list.append(friend['NickName'])
-        #Ç©Ãû¹Ø¼ü´ÊÌáÈ¡
+        #ç­¾åå…³é”®è¯æå–
         get_tag(friend['Signature'],Signature_counter)
         
 
-    #ĞÔ±ğ
+    #æ€§åˆ«
     name_list,num_list = dict2list(sex_counter)
-    get_pie('ĞÔ±ğÍ³¼Æ',name_list,num_list)
+    get_pie('æ€§åˆ«ç»Ÿè®¡',name_list,num_list)
 
-    #Ê¡·İÇ°15
+    #çœä»½å‰15
     name_list,num_list = counter2list(Province_counter.most_common(15))
-    get_bar('µØÇøÍ³¼Æ',name_list,num_list)
+    get_bar('åœ°åŒºç»Ÿè®¡',name_list,num_list)
 
-    #µØÍ¼
-    get_map('Î¢ĞÅºÃÓÑµØÍ¼¿ÉÊÓ»¯',name_list,num_list)
+    #åœ°å›¾
+    get_map('å¾®ä¿¡å¥½å‹åœ°å›¾å¯è§†åŒ–',name_list,num_list)
 
-    #êÇ³Æ
+    #æ˜µç§°
     num_list = [5 for i in range(1,len(NickName_list)+1)]
-    word_cloud('Î¢ĞÅºÃÓÑêÇ³Æ',NickName_list,num_list,[18,18])
+    word_cloud('å¾®ä¿¡å¥½å‹æ˜µç§°',NickName_list,num_list,[18,18])
 
-    #Î¢ĞÅºÃÓÑÇ©Ãû¹Ø¼ü´Ê
+    #å¾®ä¿¡å¥½å‹ç­¾åå…³é”®è¯
     name_list,num_list = counter2list(Signature_counter.most_common(200))
-    word_cloud('Î¢ĞÅºÃÓÑÇ©Ãû¹Ø¼ü´Ê',name_list,num_list,[20,100])
+    word_cloud('å¾®ä¿¡å¥½å‹ç­¾åå…³é”®è¯',name_list,num_list,[20,100])
     
-    #Í·ÏñºÏ³É
+    #å¤´åƒåˆæˆ
     mergeImage()
